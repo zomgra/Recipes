@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Recipes.Application.Interfaces;
+using Recipes.Application.Recipes.Queries.GetRecipeById;
 using Recipes.Application.Recipes.Queries.GetRecipeList;
 using Recipes.Domain;
 using Recipes.Domain.Dto.Recipes;
@@ -38,7 +39,9 @@ namespace Recipes.Api.Controllers
         [HttpGet("{id:int}")]
         public async Task<ActionResult<RecipeInfoDto>> GetRecipeById(int id)
         {
-            
+            var query = new GetRecipeByIdQuery() { Id = id };
+            var result = await Mediator.Send(query);
+            return Ok(result);
         }
     }
 }
