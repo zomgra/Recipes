@@ -1,6 +1,4 @@
-﻿using Recipes.Domain.Table;
-
-namespace Recipes.Domain.Dto
+﻿namespace Recipes.Domain.Dto.Recipes
 {
     public class RecipeInfoDto
     {
@@ -9,7 +7,7 @@ namespace Recipes.Domain.Dto
         public string Description { get; set; }
         public string Instruction { get; set; }
         public string ImageUrl { get; set; }
-        public string Category { get; set; }
+        //public string Category { get; set; }
         public DateTime CreationTime { get; set; }
     }
 }

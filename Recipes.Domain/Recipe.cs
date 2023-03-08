@@ -10,7 +10,7 @@ namespace Recipes.Domain
         public string Description { get; set; }
         public string Instruction { get; set; }
         public string ImageUrl { get; set; }
-        public string Category { get; set; }
+        //public string Category { get; set; }
         public DateTime CreationTime { get; set; }
         public virtual ICollection<IngredientInfo> IngredientInfos { get; set; }
     }
