@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Recipes.Domain\Recipes.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Mapper\Maps\" />
+  </ItemGroup>
+
 </Project>
