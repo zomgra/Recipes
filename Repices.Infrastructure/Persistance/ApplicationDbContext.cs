@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Recipes.Application.Interfaces;
-using Recipes.Domain.Table;
 using Recipes.Domain;
-using System.Reflection;
+using Recipes.Domain.Table;
 
 namespace Repices.Infrastructure.Persistance
 {
@@ -16,10 +15,20 @@ namespace Repices.Infrastructure.Persistance
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<IngredientInfo> IngredientInfos { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            base.OnModelCreating(builder);
+            modelBuilder.Entity<Ingredient>()
+                .HasKey(x => x.Id);
+
+            modelBuilder.Entity<IngredientInfo>()
+                .HasKey(i => i.Id);
+
+            modelBuilder.Entity<IngredientInfo>()
+                .HasOne(ii => ii.Ingredient)
+                .WithMany()
+                .HasForeignKey(ii => ii.IngredientId);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
