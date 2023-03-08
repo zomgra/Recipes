@@ -13,6 +13,7 @@ namespace Recipes.Application
             {
                  cfg.RegisterServicesFromAssemblies(typeof(GetRecipeListQuery).Assembly); 
             });
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }
     }
