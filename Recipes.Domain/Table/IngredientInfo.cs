@@ -13,10 +13,6 @@ namespace Recipes.Domain.Table
         [ForeignKey(nameof(Ingredient))]
         public int IngredientId { get; set; }
         public Ingredient Ingredient { get; set; }
-
-        public decimal Quantity
-        {
-            get; set;
-        }
+        public decimal Quantity { get; set; }
     }
 }
