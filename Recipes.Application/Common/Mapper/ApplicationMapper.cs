@@ -8,6 +8,7 @@ namespace Recipes.Application.Common.Mapper
     {
         public ApplicationMapper()
         {
+
             CreateMap<Recipe, RecipeSmallDto>()
                 .ForMember(r => r.Id, d => d.MapFrom(s => s.Id))
                 .ForMember(r => r.Name, d => d.MapFrom(s => s.Name))
@@ -21,8 +22,6 @@ namespace Recipes.Application.Common.Mapper
                 .ForMember(r => r.Instruction, d => d.MapFrom(i => i.Instruction))
                 .ForMember(r => r.CreationTime, d => d.MapFrom(i => i.CreationTime))
                 .ForMember(r => r.Description, d => d.MapFrom(i => i.Description));
-
-
         }
     }
 }

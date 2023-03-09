@@ -2,6 +2,7 @@
 using MediatR;
 using System.Reflection;
 using Recipes.Application.Recipes.Queries.GetRecipeList;
+using Recipes.Application.Common.Mapper;
 
 namespace Recipes.Application
 {
@@ -13,7 +14,7 @@ namespace Recipes.Application
             {
                  cfg.RegisterServicesFromAssemblies(typeof(GetRecipeListQuery).Assembly); 
             });
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(typeof(ApplicationMapper));
             return services;
         }
     }

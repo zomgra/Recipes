@@ -10,7 +10,6 @@ namespace Recipes.Domain.Table
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int RecipeId { get; set; }
-        //public Recipe Recipe { get; set; }
         [ForeignKey(nameof(Ingredient))]
         public int IngredientId { get; set; }
         public Ingredient Ingredient { get; set; }

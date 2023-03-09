@@ -19,7 +19,8 @@ namespace Recipes.Application.Recipes.Queries.GetRecipeById
 
         public async Task<RecipeInfoDto> Handle(GetRecipeByIdQuery request, CancellationToken cancellationToken)
         {
-            var entity = await _context.Recipes.Include(i=>i.IngredientInfos).ThenInclude(i=>i.Ingredient).FirstOrDefaultAsync(r => r.Id == request.Id);
+            var test = _context.Recipes.Include(i => i.IngredientInfos).ThenInclude(i => i.Ingredient).ToList();
+            var entity = await _context.Recipes.Include(i => i.IngredientInfos).ThenInclude(i => i.Ingredient).FirstOrDefaultAsync(r => r.Id == request.Id);
 
             if (entity == null) throw new Exception($"{nameof(entity)} is null");
             var recipe = _mapper.Map<RecipeInfoDto>(entity);
