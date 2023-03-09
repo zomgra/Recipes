@@ -1,8 +1,6 @@
-using Newtonsoft.Json;
 using Recipes.Application;
 using Repices.Infrastructure;
 using Repices.Infrastructure.Persistance;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
