@@ -13,6 +13,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var allowedUrl = builder.Configuration.GetValue<string>("Url:AllowedOriginUrls");
+
+builder.Services.AddCors(o =>
+{
+    o.AddDefaultPolicy(b =>
+    {
+        b.AllowAnyHeader().AllowCredentials().WithOrigins(allowedUrl);
+    });
+});
+
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -25,6 +35,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
+app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
