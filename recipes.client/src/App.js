@@ -1,26 +1,33 @@
 import { useEffect, useState } from 'react';
-import { Route, Router } from 'react-router-dom'
+import { Route, Router, Routes } from 'react-router-dom'
 import './App.css';
-import { getAllRecipes, getAllInfoRecipes } from './services/recipeServise';
+import { getAllRecipes, getAllInfoRecipes, getAllIngredients } from './services/recipeServise';
+import Front from './ui/Front/Front';
+import SearchBar from './ui/Search/SearchBar';
 
 function App() {
 
   const [recipesInfo, setRecipesInfo] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
     async function getRecipes() {
-      await setRecipesInfo(await getAllInfoRecipes());
+      await setRecipesInfo(await getAllRecipes());
     }
+    async function getIngredients() {
+      await setIngredients(await getAllIngredients());
+    }
+    getIngredients();
     getRecipes();
   }, [])
 
 
   return (
     <div className="App">
-      <SearchBar />
-      <Router>
-        <Route element={<Front />} path='/'></Route>
-      </Router>
+      <SearchBar recipes={recipesInfo}/>
+      <Routes>
+        <Route element={<Front/>} path='/'></Route>
+      </Routes>
     </div>
   );
 }

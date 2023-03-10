@@ -1,30 +1,32 @@
 import React, { useState } from 'react'
+import RecipeSearchBox from './RecipeSearchBox';
 
-export default function SearchBar({ingredients}) {
+export default function SearchBar({ recipes }) {
 
     const [searchIngreadients, setSearchIngreadients] = useState([]);
     const [query, setQuery] = useState(null)
 
-    function seacrhIngredient(query) {
+    async function searchIngredient(query) {
         setQuery(query);
-        let searchIngredients = ingredients.filter(ingredient => {
-            ingredient.name.ToLowerCase().include(query.ToLowerCase())
+        const filteredData = recipes.filter((r) => {
+            return r.ingredientInfos.some((i) => {
+                return i.ingredient.name.toLowerCase().includes(query.toLowerCase());
+            });
         });
-        if(seacrhIngredients) setSearchIngreadients(seacrhIngredients);
-    }
+        await setSearchIngreadients(filteredData);
+    };
 
-  return (
-    <div>
-        <input placeholder='Enter ingredient name' onChange={(e)=> {seacrhIngredient(e.target.value)}}/>
-        {(query !== null && query.length !== 0) && (    
-            <div>
-                {seacrhIngredients.map(ingredient => {
-                    <div key={ingredient.id}>
-                        <p>{ingredient.Name}</p>
-                    </div>
-                })}
-            </div>
-        )}
-    </div>
-  )
+    return (
+        <div className='container'>
+            <input placeholder='Enter ingredient name' onChange={(e) => { searchIngredient(e.target.value) }} />
+            {searchIngreadients.length}
+            <ul className='list-group'>
+
+                {searchIngreadients.map(recipe =>
+                    <RecipeSearchBox key={recipe.id} recipe={recipe} />
+                )}
+            </ul>
+        </div>
+    )
 }
+

@@ -24,7 +24,7 @@ namespace Recipes.Api.Controllers
         /// Temporary function
         /// </summary>
         /// <returns>List of Full recipes</returns>
-        [HttpGet("/full")]
+        [HttpGet("full")]
         public async Task<List<Recipe>> GetFullRecipeList()
         {
             return await context.Recipes.Include(i=>i.IngredientInfos).ThenInclude(i=>i.Ingredient).ToListAsync();

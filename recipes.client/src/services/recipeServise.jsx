@@ -5,37 +5,25 @@ const instance = axios.create({
     baseURL: DEFAULT_API_URL,
 });
 
-export function getAllInfoRecipes() {
-    var jsonRes;
-
-    instance.get('/recipe',{
+export async function getAllInfoRecipes() {
+    var responce = await instance.get('/recipe',{
         method:"GET"
-    }).then(responce=>console.log(responce)).then(json=> jsonRes = json)
-    .catch(e=> console.error(e))
-
-    console.log(jsonRes);
-    return jsonRes;
+    });
+    return responce.data.recipes;
 }
 
-export function getAllRecipes() {
-    var jsonRes;
-
-    instance.get('/recipe',{
+export async function getAllRecipes() {
+    
+    var responce = await instance.get('/recipe/full',{
         method:"GET"
-    }).then(responce=>console.log(responce)).then(json=> jsonRes = json)
-    .catch(e=> console.error(e))
-
-    console.log(jsonRes);
-    return jsonRes;
+    });
+    console.log(responce.data);
+    return responce.data;
 }
-export function getAllIngredients() {
-    var jsonRes;
-
-    instance.get('/ingredient',{
+export async function getAllIngredients() {
+    
+    let responce = await instance.get('/ingredient',{
         method:"GET"
-    }).then(responce=>responce.json()).then(json=> jsonRes = json)
-    .catch(e=> console.error(e))
-
-    console.log(jsonRes);
-    return jsonRes;
+    });
+    return responce.data.ingredients;
 }
