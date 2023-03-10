@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import RecipeSearchBox from './RecipeSearchBox';
 
-export default function SearchBar({ recipes }) {
+export default function SearchBar({ recipes, selectRecipe }) {
 
     const [searchIngreadients, setSearchIngreadients] = useState([]);
     const [query, setQuery] = useState(null)
@@ -20,12 +20,13 @@ export default function SearchBar({ recipes }) {
         <div className='container'>
             <input placeholder='Enter ingredient name' onChange={(e) => { searchIngredient(e.target.value) }} />
             {searchIngreadients.length}
-            <ul className='list-group'>
-
-                {searchIngreadients.map(recipe =>
-                    <RecipeSearchBox key={recipe.id} recipe={recipe} />
-                )}
-            </ul>
+            {searchIngreadients.length > 0 && (
+                <ol className="list-group list-group-numbered my-2 align-items-center">
+                    {searchIngreadients.map((recipe) => (
+                        <RecipeSearchBox  key={recipe.id} recipe={recipe} selectRecipe={selectRecipe} />
+                    ))}
+                </ol>
+            )}
         </div>
     )
 }
