@@ -11,7 +11,7 @@ export default function Front() {
 
     return (
         <div>
-           
+           <SearchBar recipes={recipesInfo}/>
         </div>
     )
 }

@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import RecipeSearchBox from './RecipeSearchBox';
 
-export default function SearchBar({ recipes, selectRecipe }) {
+export default function SearchBar({ recipes }) {
 
     const [searchIngreadients, setSearchIngreadients] = useState([]);
     const [query, setQuery] = useState(null)
+
+    async function selectRecipe(recipeId){
+      window.location.href = `recipe/${recipeId}`
+    }
 
     async function searchIngredient(query) {
         setQuery(query);

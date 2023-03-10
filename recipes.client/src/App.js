@@ -3,6 +3,7 @@ import { Route, Router, Routes } from 'react-router-dom'
 import './App.css';
 import { getAllRecipes, getAllInfoRecipes, getAllIngredients } from './services/recipeServise';
 import Front from './ui/Front/Front';
+import RecipeInfo from './ui/Recipe/RecipeInfo';
 import SearchBar from './ui/Search/SearchBar';
 
 function App() {
@@ -21,12 +22,11 @@ function App() {
     getRecipes();
   }, [])
 
-
   return (
     <div className="App">
-      <SearchBar recipes={recipesInfo}/>
       <Routes>
         <Route element={<Front/>} path='/'></Route>
+        <Route path='/recipe/:id' element={<RecipeInfo/>}></Route>
       </Routes>
     </div>
   );
