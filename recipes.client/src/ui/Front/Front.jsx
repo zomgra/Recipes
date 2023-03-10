@@ -1,17 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import SearchBar from '../Search/SearchBar'
 
-export default function Front() {
+export default function Front({recipes}) {
 
-    useEffect(() => {
-        async function getRecipes() {
-
-        }
-    }, [])
+    
 
     return (
         <div>
-           <SearchBar recipes={recipesInfo}/>
+           <SearchBar recipes={recipes}/>
         </div>
     )
 }

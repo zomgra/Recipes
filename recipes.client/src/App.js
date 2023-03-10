@@ -4,7 +4,6 @@ import './App.css';
 import { getAllRecipes, getAllInfoRecipes, getAllIngredients } from './services/recipeServise';
 import Front from './ui/Front/Front';
 import RecipeInfo from './ui/Recipe/RecipeInfo';
-import SearchBar from './ui/Search/SearchBar';
 
 function App() {
 
@@ -25,7 +24,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route element={<Front/>} path='/'></Route>
+        <Route element={<Front recipes={recipesInfo}/>} path='/'></Route>
         <Route path='/recipe/:id' element={<RecipeInfo/>}></Route>
       </Routes>
     </div>

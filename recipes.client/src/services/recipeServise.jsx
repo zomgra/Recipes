@@ -20,6 +20,15 @@ export async function getAllRecipes() {
     console.log(responce.data);
     return responce.data;
 }
+
+export async function getRecipeById(id) {
+    var responce = await instance.get(`/recipe/${id}`,{
+        method:"GET"
+    });
+    console.log(responce.data);
+    return responce.data;
+}
+
 export async function getAllIngredients() {
     
     let responce = await instance.get('/ingredient',{
