@@ -2,22 +2,28 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { getRecipeById } from '../../services/recipeServise';
 
-export default function RecipeInfo() {
-    const { id } = useParams();
+export default function RecipeInfoPage() {
+
     const [recipe, setRecipe] = useState();
+    const {id} = useParams();
+    
     useEffect(() => {
-        async function getRecipe() {
-            let recipe = await getRecipeById(id);
-            console.log(recipe);
-            setRecipe(recipe);
+        console.log(id);
+        async function fetchRecipe() {
+            let reciped = await getRecipeById(id);
+            console.log(reciped);
+            setRecipe(reciped);
         }
-        getRecipe();
-    }, [])
+        fetchRecipe();
+    }, [id]);
+
+    if(!recipe) return <div>Loading..</div>
+
     return (
         <div>
-            <div className="jumbotron jumbotron-fluid bg-secondary">
+             <div className="jumbotron jumbotron-fluid bg-secondary">
                 <div className="container">
-                    <h1 class="text-center text-white display-1">{recipe.name}</h1>
+                    <h1 className="text-center text-white display-1">{recipe.name}</h1>
                 </div>
             </div>
 
@@ -27,7 +33,8 @@ export default function RecipeInfo() {
                         <img src={recipe.imageUrl} alt={recipe.imageUrl} className="img-fluid"/>
                     </div>
                     <div className="col-md-6">
-                        <h2 className="mb-4">Лучшее блюдо Украины</h2>
+                        {/* <h2 className="mb-4">Лучшее блюдо Украины</h2> */}
+                        
                         <p><strong>Описание:</strong></p>
                         <p>{recipe.description}</p>
                         <p><strong>Инструкция:</strong></p>
@@ -36,7 +43,7 @@ export default function RecipeInfo() {
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
     )
 }

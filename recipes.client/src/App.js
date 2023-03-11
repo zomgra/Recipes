@@ -3,7 +3,7 @@ import { Route, Router, Routes } from 'react-router-dom'
 import './App.css';
 import { getAllRecipes, getAllInfoRecipes, getAllIngredients } from './services/recipeServise';
 import Front from './ui/Front/Front';
-import RecipeInfo from './ui/Recipe/RecipeInfo';
+import RecipeInfoPage from './ui/Recipe/RecipeInfoPage';
 
 function App() {
 
@@ -25,7 +25,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route element={<Front recipes={recipesInfo}/>} path='/'></Route>
-        <Route path='/recipe/:id' element={<RecipeInfo/>}></Route>
+        <Route path='/recipe/:id' element={<RecipeInfoPage/>}></Route>
       </Routes>
     </div>
   );

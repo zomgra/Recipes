@@ -6,33 +6,35 @@ const instance = axios.create({
 });
 
 export async function getAllInfoRecipes() {
-    var responce = await instance.get('/recipe',{
-        method:"GET"
+    var responce = await instance.get('/recipe', {
+        method: "GET"
     });
     return responce.data.recipes;
 }
 
 export async function getAllRecipes() {
-    
-    var responce = await instance.get('/recipe/full',{
-        method:"GET"
+
+    var responce = await instance.get('/recipe/full', {
+        method: "GET"
     });
     console.log(responce.data);
     return responce.data;
 }
 
 export async function getRecipeById(id) {
-    var responce = await instance.get(`/recipe/${id}`,{
-        method:"GET"
-    });
-    console.log(responce.data);
-    return responce.data;
+    try {
+        var responce = await instance.get(`/recipe/${id}`);
+        return responce.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
 }
 
 export async function getAllIngredients() {
-    
-    let responce = await instance.get('/ingredient',{
-        method:"GET"
+
+    let responce = await instance.get('/ingredient', {
+        method: "GET"
     });
     return responce.data.ingredients;
 }
