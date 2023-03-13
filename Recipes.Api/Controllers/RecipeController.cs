@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Recipes.Application.Interfaces;
+using Recipes.Application.Recipes.Queries.GetFullRecipeList;
 using Recipes.Application.Recipes.Queries.GetRecipeById;
 using Recipes.Application.Recipes.Queries.GetRecipeList;
 using Recipes.Domain;
@@ -27,7 +28,8 @@ namespace Recipes.Api.Controllers
         [HttpGet("full")]
         public async Task<List<Recipe>> GetFullRecipeList()
         {
-            return await context.Recipes.Include(i=>i.IngredientInfos).ThenInclude(i=>i.Ingredient).ToListAsync();
+            var query = new GetFullRecipeListQuery();
+            return await Mediator.Send(query);
         }
         [HttpGet]
         public async Task<ActionResult<RecipeSmallListDto>> GetAllSmallRecipes()

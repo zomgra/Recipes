@@ -3,6 +3,7 @@ using MediatR;
 using System.Reflection;
 using Recipes.Application.Recipes.Queries.GetRecipeList;
 using Recipes.Application.Common.Mapper;
+using FluentValidation;
 
 namespace Recipes.Application
 {
@@ -15,6 +16,9 @@ namespace Recipes.Application
                  cfg.RegisterServicesFromAssemblies(typeof(GetRecipeListQuery).Assembly); 
             });
             services.AddAutoMapper(typeof(ApplicationMapper));
+
+            services.AddValidatorsFromAssemblies(new[] {Assembly.GetExecutingAssembly() });
+
             return services;
         }
     }
